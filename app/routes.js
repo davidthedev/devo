@@ -1,5 +1,5 @@
 module.exports = (app) => {
   app.get('/', (req, res) => {
-    res.send('Homepage');
+    res.sendFile(__dirname + '/../public/index.html');
   });
 };
