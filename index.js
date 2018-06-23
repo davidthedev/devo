@@ -1,15 +1,21 @@
 const express = require('express');
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const http = require('http');
+const ioServer = require('socket.io');
 const routes = require('./app/routes');
+const bodyParser = require('body-parser');
 
-app.use(express.static('public'))
+const app = express();
+const server = http.createServer(app);
+const io = new ioServer(server);
+
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 routes(app);
 
-io.on('connection', function (socket) {
-  socket.on('chat message', function (msg) {
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
   });
 });
