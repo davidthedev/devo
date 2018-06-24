@@ -1,0 +1,11 @@
+//- master master.pug
+html(lang="en")
+  head
+    title WebChat - #{title}
+    block scripts
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+    script(src='/socket.io/socket.io.js')
+  body
+    block content

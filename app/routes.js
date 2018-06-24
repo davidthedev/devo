@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
-    res.sendFile(path.resolve('public/index.html'));
+    res.render('login');
   });
 
   app.get('/login', (req, res) => {
-    res.sendFile(path.resolve('public/login.html'));
+    res.render('login');
   });
 
   app.post('/login', (req, res) => {
@@ -20,6 +20,6 @@ module.exports = (app) => {
   });
 
   app.get('/chat', (req, res) => {
-    res.sendFile(path.resolve('public/index.html'));
+    res.render('chat');
   });
 };

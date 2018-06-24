@@ -1,0 +1,30 @@
+extends master.pug
+
+block content
+  h2 How can we help you?
+  <form>
+    <input type="text" name="name" id="name" placeholder="Enter name" />
+    <input type="text" name="email" id="email" placeholder="Enter email" />
+    <input type="submit" name="message_btn" value="Send" />
+  </form>
+
+  script.
+    $(function () {
+      let socket = io();
+
+      $('form').submit(() => {
+        const msg = $('#message').val();
+
+        socket.emit('chat message', $('#message').val());
+
+        // $('#messages').append($('<li>').text(msg));
+
+        $('#message').val('');
+
+        return false;
+      });
+
+      socket.on('chat message', function(msg) {
+        $('#messages').append($('<li>').text(msg));
+      });
+    });

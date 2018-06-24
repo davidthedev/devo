@@ -8,9 +8,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new ioServer(server);
 
-app.use(express.static('public'));
+
+app.use(express.static('./public/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'pug');
+app.set('views', './app/views');
 
 routes(app);
 
