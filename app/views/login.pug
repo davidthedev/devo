@@ -1,7 +1,8 @@
 extends master.pug
 
 block content
-  h2 How can we help you?
+  h2 Your chat
+  <ul id="messages"></ul>
   <form>
     <input type="text" name="name" id="name" placeholder="Enter name" />
     <input type="text" name="email" id="email" placeholder="Enter email" />
@@ -9,22 +10,23 @@ block content
   </form>
 
   script.
-    $(function () {
-      let socket = io();
-
+    $(() => {
       $('form').submit(() => {
-        const msg = $('#message').val();
-
-        socket.emit('chat message', $('#message').val());
-
-        // $('#messages').append($('<li>').text(msg));
-
-        $('#message').val('');
+        $.ajax({
+          type: "POST",
+          url: 'http://localhost:8080/',
+          data: {
+            name: $('#name').val(),
+            email: $('#email').val()
+          }
+        })
+        .done((data) => {
+          window.location.href = data.urlSegment;
+        })
+        .fail((error) => {
+          console.log(error.msg);
+        });
 
         return false;
-      });
-
-      socket.on('chat message', function(msg) {
-        $('#messages').append($('<li>').text(msg));
       });
     });

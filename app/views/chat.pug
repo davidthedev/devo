@@ -1,31 +1,29 @@
 extends master.pug
 
 block content
-  h2 Your chat
-  <ul id="messages"></ul>
+  h2 How can we help you?
   <form>
     <input type="text" name="message" id="message" placeholder="Type your message" />
     <input type="submit" name="message_btn" value="Send" />
   </form>
 
   script.
-    $(() => {
+    $(function () {
+      let socket = io();
+
       $('form').submit(() => {
-        $.ajax({
-          type: "POST",
-          url: 'http://localhost:8080/login',
-          data: {
-            name: $('#name').val(),
-            email: $('#email').val()
-          }
-        })
-        .done((data) => {
-          window.location.href = data.urlSegment;
-        })
-        .fail((error) => {
-          console.log(error.msg);
-        });
+        const msg = $('#message').val();
+
+        socket.emit('chat message', $('#message').val());
+
+        // $('#messages').append($('<li>').text(msg));
+
+        $('#message').val('');
 
         return false;
+      });
+
+      socket.on('chat message', function(msg) {
+        $('#messages').append($('<li>').text(msg));
       });
     });
