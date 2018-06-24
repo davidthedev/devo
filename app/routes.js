@@ -5,11 +5,7 @@ module.exports = (app) => {
     res.render('login');
   });
 
-  app.get('/login', (req, res) => {
-    res.render('login');
-  });
-
-  app.post('/login', (req, res) => {
+  app.post('/', (req, res) => {
     // TODO
     // save req.body params (name, email, query?) to db
     // on succcess, send redirect url
