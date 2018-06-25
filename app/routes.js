@@ -1,6 +1,8 @@
 const path = require('path');
 
-module.exports = (app) => {
+module.exports = (app, sockets) => {
+  const ioNsp = sockets.of('/chat'); // namespace
+
   app.get('/', (req, res) => {
     res.render('login');
   });
@@ -16,6 +18,37 @@ module.exports = (app) => {
   });
 
   app.get('/chat', (req, res) => {
-    res.render('chat');
+
+    ioNsp.on('connection', (socket) => {
+      socket.on('join', (room) => {
+        socket.join('somesock');
+      });
+
+      socket.on('message', (msg) => {
+        socket.emit('message', msg);
+      });
+    });
+
+    res.render('chat', { chatRoom: 'somesock' });
+  });
+
+  app.post('/chat', (req, res) => {
+
+  });
+
+  app.get('/join', (req, res) => {
+    const ioNsp = sockets.of('/chat');
+
+    ioNsp.on('connection', (socket) => {
+      socket.on('join', (room) => {
+        socket.join('somesock2');
+      });
+
+      socket.on('message', (msg) => {
+        socket.emit('message', msg);
+      });
+    });
+
+    res.render('chat', { chatRoom: 'somesock2' });
   });
 };

@@ -2,6 +2,7 @@ extends master.pug
 
 block content
   h2 How can we help you?
+  <ul id="messages"></ul>
   <form>
     <input type="text" name="message" id="message" placeholder="Type your message" />
     <input type="submit" name="message_btn" value="Send" />
@@ -9,12 +10,16 @@ block content
 
   script.
     $(function () {
-      let socket = io();
+      let socket = io('/chat');
+
+      const room = "#{chatRoom}";
+
+      socket.emit('join', room);
 
       $('form').submit(() => {
         const msg = $('#message').val();
 
-        socket.emit('chat message', $('#message').val());
+        socket.emit('message', $('#message').val());
 
         // $('#messages').append($('<li>').text(msg));
 
@@ -23,7 +28,7 @@ block content
         return false;
       });
 
-      socket.on('chat message', function(msg) {
+      socket.on('message', function(msg) {
         $('#messages').append($('<li>').text(msg));
       });
     });
