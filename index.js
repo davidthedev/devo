@@ -6,8 +6,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const server = http.createServer(app);
-const io = new ioServer(server);
-
+const sockets = new ioServer(server);
 
 app.use(express.static('./public/'));
 app.use(bodyParser.json());
@@ -16,12 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', './app/views');
 
-routes(app);
-
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-});
+routes(app, sockets);
 
 server.listen(8080);
