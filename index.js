@@ -15,6 +15,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', './app/views');
 
+const ioNsp = sockets.of('/chat'); // namespace
+
+ioNsp.on('connection', (socket) => {
+  socket.on('join', (room) => {
+    console.log('room joined ' + room);
+    socket.join(room);
+  });
+
+  socket.on('message', (msg) => {
+    console.log('here chat');
+    socket.emit('message', msg);
+  });
+});
+
 routes(app, sockets);
 
 server.listen(8080);
