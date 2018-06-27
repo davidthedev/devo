@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = (app, sockets) => {
+module.exports = (app) => {
 
   app.get('/', (req, res) => {
     res.render('login');
@@ -20,11 +20,21 @@ module.exports = (app, sockets) => {
     res.render('chat', { chatRoom: 'somesock' });
   });
 
+  app.get('/chats', (req, res) => {
+    const chats = [];
+
+    chats.push('/join/somesock');
+    chats.push('/join/somesock2');
+
+    res.render('chats', { chats: chats });
+  });
+
   // app.post('/chat', (req, res) => {
 
   // });
 
-  app.get('/join', (req, res) => {
-    res.render('chat', { chatRoom: 'somesock2' });
+  app.get('/join/:roomId', (req, res) => {
+    const roomId = req.params.roomId;
+    res.render('chat', { chatRoom: roomId });
   });
 };
