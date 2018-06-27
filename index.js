@@ -19,16 +19,14 @@ const ioNsp = sockets.of('/chat'); // namespace
 
 ioNsp.on('connection', (socket) => {
   socket.on('join', (room) => {
-    console.log('room joined ' + room);
     socket.join(room);
   });
 
-  socket.on('message', (msg) => {
-    console.log('here chat');
-    socket.emit('message', msg);
+  socket.on('message', (msg, room) => {
+    socket.to(room).emit('message', msg);
   });
 });
 
-routes(app, sockets);
+routes(app);
 
 server.listen(8080);
