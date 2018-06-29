@@ -2,7 +2,18 @@ extends master.pug
 
 block content
   h2 Queue:
-    <br />
-    each val, index in chats
-      a(href=val)=index
-      <br />
+    div
+      ul#msgs
+        each val, index in chats
+          li
+            a(href=val) #{index}
+
+  script.
+    $(function () {
+      let socket = io('/panel');
+
+      socket.on('new-message', function(msg) {
+        console.log('new message received', msg);
+        $('#msgs').append($('<li><a href="/join/' + msg + '">User chat ' + msg + '</a></li>'));
+      });
+    });

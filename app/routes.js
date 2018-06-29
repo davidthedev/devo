@@ -10,7 +10,9 @@ module.exports = (app) => {
     // TODO
     // save req.body params (name, email, query?) to db
     // on succcess, send redirect url
-    res.status(200).json({ urlSegment: '/chat' });
+
+    const chatId = Math.floor(Math.random() * Math.floor(1000));
+    res.status(200).json({ urlSegment: '/join/' + chatId });
 
     // TODO (failed response)
     // res.status(500).json({ msg: 'failed' });
