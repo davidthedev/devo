@@ -15,8 +15,6 @@ block content
       const room = "#{chatRoom}";
 
       socket.emit('join', room);
-      socket.emit('user-joined', room);
-
 
       socket.on('message', function(msg) {
         $('#messages').append($('<li>').text(msg));

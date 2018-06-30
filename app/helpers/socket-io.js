@@ -14,8 +14,8 @@ module.exports = {
         ioNsp.in(room).emit('message', msg);
       });
 
-      socket.on('new-message', (msg) => {
-        sockets.of('/panel').emit('new-message', msg);
+      socket.on('user-joined', (room) => {
+        sockets.of('/panel').emit('user-joined', room);
       })
     });
   }
