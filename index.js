@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', './app/views');
 
-socketIO.run(server);
+socketIO.connect(server);
 
 routes(app);
 
