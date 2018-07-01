@@ -12,9 +12,10 @@ block content
     $(function () {
       let socket = io('/chat');
 
-      const room = "#{chatRoom}";
+      const roomId = "#{chatRoom}";
+      const opName = "Operator"
 
-      socket.emit('join', room);
+      socket.emit('join-as-op', { roomId, opName });
 
       socket.on('message', function(msg) {
         $('#messages').append($('<li>').text(msg));
@@ -23,7 +24,7 @@ block content
       $('form').submit(() => {
         const msg = $('#message').val();
 
-        socket.emit('message', $('#message').val(), room);
+        socket.emit('message', { msg: $('#message').val(), roomId });
 
         //- // $('#messages').append($('<li>').text(msg));
 
@@ -31,6 +32,4 @@ block content
 
         return false;
       });
-
-
     });

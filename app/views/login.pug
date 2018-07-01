@@ -22,7 +22,6 @@ block content
         })
         .done((data) => {
           let socket = io('/chat');
-          //- socket.emit('user-joined', data.roomId);
 
           window.location.href = data.urlSegment;
         })

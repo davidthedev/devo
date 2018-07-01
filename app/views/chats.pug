@@ -12,8 +12,7 @@ block content
     $(function () {
       let socket = io('/panel');
 
-      socket.on('user-joined', function(room) {
-        console.log('new user joined room: ', room);
+      socket.on('joined-as-user', function(room) {
         $('#msgs').append($('<li><a href="/messages/' + room + '">User chat ' + room + '</a></li>'));
       });
     });
