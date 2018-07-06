@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"../../app/client/styles.scss",
+		"../../app/client/pages/LiveChat/_styles.scss"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,UAAU,CAAC;EACT,gBAAgB,EAAE,OAAO,GAC1B"
+}
