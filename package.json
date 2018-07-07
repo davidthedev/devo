@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:scss-compile": "node-sass-chokidar --source-map true app/client/styles.scss public/css/styles.css  --watch --recursive",
-    "build": "npm run build:scss-compile & webpack --config webpack.config.js & nodemon index.js",
+    "start": "npm run build:scss-compile & webpack --config webpack.config.js & nodemon index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
