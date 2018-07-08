@@ -7,7 +7,7 @@
     "build:scss-compile": "node-sass-chokidar --source-map true app/client/styles.scss public/css/styles.css  --watch --recursive",
     "start": "npm run build:scss-compile & webpack --config webpack.config.js & nodemon index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --recursive './test/**/*.js' --exit"
   },
   "author": "",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "babel-loader": "7.1.4",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
+    "mocha": "5.2.0",
     "webpack": "4.14.0",
     "webpack-cli": "3.0.8"
   }
