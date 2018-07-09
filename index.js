@@ -1,6 +1,5 @@
 const express = require('express');
 const http = require('http');
-const ioServer = require('socket.io');
 const routes = require('./app/routes');
 const bodyParser = require('body-parser');
 const socketIO = require('./app/helpers/socket-io');
