@@ -10,28 +10,28 @@ block content
   </form>
 
   script.
-    $(() => {
-      $('form').submit(() => {
-        $.ajax({
-          type: "POST",
-          url: 'http://localhost:8080/',
-          data: {
-            name: $('#name').val(),
-            email: $('#email').val()
-          }
-        })
-        .done((data) => {
-          let socket = io('/chat');
+    //- $(() => {
+    //-   $('form').submit(() => {
+    //-     $.ajax({
+    //-       type: "POST",
+    //-       url: 'http://localhost:8080/',
+    //-       data: {
+    //-         name: $('#name').val(),
+    //-         email: $('#email').val()
+    //-       }
+    //-     })
+    //-     .done((data) => {
+    //-       let socket = io('/chat');
 
-          window.location.href = data.urlSegment;
-        })
-        .fail((error) => {
-          console.log(error.msg);
-        });
+    //-       window.location.href = data.urlSegment;
+    //-     })
+    //-     .fail((error) => {
+    //-       console.log(error.msg);
+    //-     });
 
-        return false;
-      });
-    });
+    //-     return false;
+    //-   });
+    //- });
 
   script(src='/js/bundle.js')
 
