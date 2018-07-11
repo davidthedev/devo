@@ -8,7 +8,6 @@ export default class LiveChat extends Component {
   }
 
   handleSubmit(e) {
-    console.log(e.target);
     e.preventDefault();
   }
 
