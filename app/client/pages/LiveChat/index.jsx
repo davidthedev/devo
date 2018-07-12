@@ -21,7 +21,7 @@ export default class LiveChat extends Component {
           <form onSubmit={this.handleSubmit}>
             <input type="text" name="name" id="name" placeholder="Your name" />
             <input type="text" name="email" id="email" placeholder="Your email" />
-            <input type="text" name="question" id="email" placeholder="Your question" />
+            <input type="text" name="question" id="question" placeholder="Your question" />
             <input type="submit" name="message_btn" />
           </form>
         </div>
