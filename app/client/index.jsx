@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LiveChat from './pages/LiveChat';
+import Routes from './Routes';
 
-ReactDOM.render(<LiveChat />, document.getElementById('app'));
+ReactDOM.render(<Routes />, document.getElementById('app'));
